@@ -1,5 +1,7 @@
 runtime: python38
 
+# default_expiration: "1h"
+
 handlers:
 - url: /static
   static_dir: static

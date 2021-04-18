@@ -17,8 +17,9 @@ a { text-decoration: none; }
 }
 
 .two {
-  margin: 4em;
-  height: 30%;
+  margin: 6em;
+  height: 20%;
+  font-size: 150%;
 }
 
 .grid___ {
