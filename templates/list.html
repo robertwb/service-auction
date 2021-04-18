@@ -1,0 +1,22 @@
+<html>
+<head>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<center>
+Bear Creek 2021 Service Auction
+
+{% for ix, (service, person) in enumerate(cards) %}
+<div class="card listing">
+<div class="ix">#{{ix+1}}</div>
+<div>
+<p class="service">{{service}}</p>
+<p class="person">{{person}}</p>
+</div>
+</div>
+{% endfor %}
+<a href="/">back</a>
+
+</center>
+</body>
+</html>

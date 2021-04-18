@@ -1,0 +1,61 @@
+body {
+background: #FFFFDD;
+background-image: url("background.jpeg");
+background-size: cover;
+}
+
+a { text-decoration: none; }
+
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.two {
+  margin: 4em;
+  height: 30%;
+}
+
+.grid___ {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.griditem {
+  float: left;
+  margin: 1%;
+  padding: 1%;
+  height: 23%;
+  width: 29%;
+  position: relative;
+  font-size: 150%;
+}
+
+.listing {
+  margin: 1%;
+  position: relative;
+}
+
+.service {
+}
+
+.person {
+  font-style: italic;
+}
+
+.url {
+  font-size: 150%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ix {
+  display: inline-block;
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
