@@ -42,19 +42,28 @@ def cards_generic(template):
     page = int(flask.request.args.get('page', 0))
     services = get_services()
     page = page % ((len(services) + 8) // 9)
-    return flask.render_template(template, cards=services, page=page, enumerate=enumerate)
+
+    def size(service):
+        if len(service) < 100:
+            return ''
+        elif len(service) < 200:
+            return 'style="font-size: 85%"'
+        else:
+            return 'style="font-size: 75%"'
+
+    return flask.render_template(template, cards=services, page=page, enumerate=enumerate, size=size)
 
 
 @app.route('/list')
 def list():
     services = get_services()
-    return flask.render_template('list.html', cards=services, enumerate=enumerate)
+    return flask.render_template('list.html', cards=services, enumerate=enumerate, size=lambda x: '')
 
 
 _last_result = []
 _last_timestamp = 0
 
-def get_services(refresh_rate=10):
+def get_services(refresh_rate=100):
   global _last_result, _last_timestamp
   if time.time() - _last_timestamp > refresh_rate:
       try:
@@ -70,7 +79,6 @@ def get_services(refresh_rate=10):
 def really_get_services():
   gc = gspread.service_account(SERVICE_ACCOUNT)
   w = gc.open_by_key(SHEET_ID)
-  print(dir(w))
   return [
       (row[SERVICE_COL], row[PERSON_COL])
       for row in w.worksheet(SHEET_TAB).get_all_records()
