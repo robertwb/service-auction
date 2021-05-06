@@ -9,11 +9,13 @@
 
 {% for ix, (service, person) in enumerate(cards) %}
 <div class="card listing">
+<a href='/one?service={{service}}&person={{person}}' class="invisible">
 <div class="ix">#{{ix+1}}</div>
 <div>
 <p class="service">{{service}}</p>
 <p class="person">{{person}}</p>
 </div>
+</a>
 </div>
 {% endfor %}
 <a href="/">back</a>

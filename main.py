@@ -60,6 +60,15 @@ def list():
     return flask.render_template('list.html', cards=services, enumerate=enumerate, size=lambda x: '')
 
 
+@app.route('/one')
+def one():
+    return flask.render_template(
+        'one.html',
+        service=flask.request.args.get('service'),
+        person=flask.request.args.get('person'),
+        size=lambda x: '')
+
+
 _last_result = []
 _last_timestamp = 0
 
