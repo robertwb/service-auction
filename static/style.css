@@ -67,6 +67,6 @@ h1 {
 .ix {
   display: inline-block;
   position: absolute;
-  top: 1em;
-  left: 1em;
+  top: 0.5em;
+  left: 0.5em;
 }
