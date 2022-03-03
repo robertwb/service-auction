@@ -7,6 +7,7 @@ import gspread
 
 app = flask.Flask(__name__)
 TEST = False
+YEAR=2022
 
 SERVICE_ACCOUNT = 'bcrs-service-auction-bbc421114be9.json'
 if TEST:
@@ -16,7 +17,7 @@ if TEST:
     SERVICE_COL = 'Color'
     BUYER_COL = 'Buyer'
 else:
-    SHEET_ID = '19O3HfolgnYyOnZJpDUDu9UA0ChArf-kDYO97RUuv7kc'
+    SHEET_ID = '1EFbAa6jDoJHx4x0CFMOajv8zAKDglqTOmeXRYVXw_jE'
     SHEET_TAB = 'responses'
     PERSON_COL = 'Name'
     SERVICE_COL = 'Service offered'
@@ -25,7 +26,7 @@ else:
 
 @app.route('/')
 def index():
-    return flask.render_template('index.html')
+    return flask.render_template('index.html', year=YEAR)
 
 
 @app.route('/cards')
@@ -51,13 +52,13 @@ def cards_generic(template):
         else:
             return 'style="font-size: 75%"'
 
-    return flask.render_template(template, cards=services, page=page, enumerate=enumerate, size=size)
+    return flask.render_template(template, cards=services, page=page, enumerate=enumerate, size=size, year=YEAR)
 
 
 @app.route('/list')
 def list():
     services = get_services()
-    return flask.render_template('list.html', cards=services, enumerate=enumerate, size=lambda x: '')
+    return flask.render_template('list.html', cards=services, enumerate=enumerate, size=lambda x: '', year=YEAR)
 
 
 @app.route('/one')
@@ -66,13 +67,14 @@ def one():
         'one.html',
         service=flask.request.args.get('service'),
         person=flask.request.args.get('person'),
-        size=lambda x: '')
+        size=lambda x: '',
+        year=YEAR)
 
 
 _last_result = []
 _last_timestamp = 0
 
-def get_services(refresh_rate=100):
+def get_services(refresh_rate=10):
   global _last_result, _last_timestamp
   if time.time() - _last_timestamp > refresh_rate:
       try:
@@ -89,6 +91,6 @@ def really_get_services():
   gc = gspread.service_account(SERVICE_ACCOUNT)
   w = gc.open_by_key(SHEET_ID)
   return [
-      (row[SERVICE_COL], row[PERSON_COL])
-      for row in w.worksheet(SHEET_TAB).get_all_records()
+      (ix, row[SERVICE_COL], row[PERSON_COL])
+      for ix, row in enumerate(w.worksheet(SHEET_TAB).get_all_records())
       if not row.get(BUYER_COL)]

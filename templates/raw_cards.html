@@ -1,5 +1,5 @@
-{% for ix, (service, person) in enumerate(cards) %}
-{% if 9*page <= ix < 9*page + 9 %}
+{% for pos, (ix, service, person) in enumerate(cards) %}
+{% if 9*page <= pos < 9*page + 9 %}
 <div class="card griditem">
 <div class="ix" {{size(service)|safe}}>#{{ix+1}}</div>
 <div>

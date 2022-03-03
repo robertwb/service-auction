@@ -1,13 +1,13 @@
 <html>
 <head>
-<title>Bear Creek 2021 Service Auction</title>
+<title>Bear Creek {{year}} Service Auction</title>
 <link rel="stylesheet" href="static/style.css?foo">
 </head>
 <body>
 <center>
-<h1>Bear Creek 2021 Service Auction</h1>
+<h1>Bear Creek {{year}} Service Auction</h1>
 
-{% for ix, (service, person) in enumerate(cards) %}
+{% for ix, service, person in cards %}
 <div class="card listing">
 <a href='/one?service={{service}}&person={{person}}' class="invisible">
 <div class="ix">#{{ix+1}}</div>
