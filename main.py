@@ -7,7 +7,7 @@ import gspread
 
 app = flask.Flask(__name__)
 TEST = False
-YEAR=2022
+YEAR=2023
 
 SERVICE_ACCOUNT = 'bcrs-service-auction-bbc421114be9.json'
 if TEST:
@@ -17,10 +17,10 @@ if TEST:
     SERVICE_COL = 'Color'
     BUYER_COL = 'Buyer'
 else:
-    SHEET_ID = '1EFbAa6jDoJHx4x0CFMOajv8zAKDglqTOmeXRYVXw_jE'
-    SHEET_TAB = 'responses'
+    SHEET_ID = '1EUdtziJj1xPzzFPdPVxM4vgNbDHeRm6g941l3RNy23M'
+    SHEET_TAB = 'Form Responses 1'
     PERSON_COL = 'Name'
-    SERVICE_COL = 'Service offered'
+    SERVICE_COL = 'Service Offered'
     BUYER_COL = 'Buyer'
 
 
